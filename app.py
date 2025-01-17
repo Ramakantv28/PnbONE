@@ -3,7 +3,7 @@ from PIL import Image
 
 def add_selfie_to_template(selfie, template_path, output_path):
     try:
-        template = Image.open(PnbONE_Template.jpg)
+        template = Image.open('PnbONE_Template.jpg')
 
         box_x, box_y = 462, 450  # Top-left corner coordinates of the white box
         box_width, box_height = 490, 500  # Dimensions of the white box
