@@ -3,7 +3,7 @@ from PIL import Image
 
 def add_selfie_to_template(selfie, template_path, output_path):
     try:
-        template = Image.open(https://drive.google.com/file/d/1XewpxIWrXzna4hbqaYv3BA4LiCX1c9yU/view?usp=drive_link)
+        template = Image.open(PnbONE_Template.jpg)
 
         box_x, box_y = 462, 450  # Top-left corner coordinates of the white box
         box_width, box_height = 490, 500  # Dimensions of the white box
@@ -11,7 +11,7 @@ def add_selfie_to_template(selfie, template_path, output_path):
 
         template.paste(selfie, (box_x, box_y))
 
-        template.save(https://drive.google.com/file/d/1XewpxIWrXzna4hbqaYv3BA4LiCX1c9yU/view?usp=drive_link)
+        template.save()
         st.success(f"Image saved to {output_path}")
 
     except FileNotFoundError:
