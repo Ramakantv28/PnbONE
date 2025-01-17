@@ -1,13 +1,37 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ExifTags
 import io
+
+def correct_orientation(image):
+    try:
+        for orientation in ExifTags.TAGS.keys():
+            if ExifTags.TAGS[orientation] == 'Orientation':
+                break
+        exif = image._getexif()
+        if exif is not None:
+            exif = dict(exif.items())
+            orientation = exif.get(orientation, None)
+
+            if orientation == 3:
+                image = image.rotate(180, expand=True)
+            elif orientation == 6:
+                image = image.rotate(270, expand=True)
+            elif orientation == 8:
+                image = image.rotate(90, expand=True)
+    except (AttributeError, KeyError, IndexError):
+        # cases: image don't have getexif
+        pass
+    return image
 
 def add_selfie_to_template(selfie, template_path, output_path):
     try:
-        template = Image.open('PnbONE_Template.jpg')
+        template = Image.open('PnbONE_Teamplate.jpg')
 
         box_x, box_y = 462, 450  # Top-left corner coordinates of the white box
         box_width, box_height = 490, 500  # Dimensions of the white box
+
+        # Correct orientation of the selfie
+        selfie = correct_orientation(selfie)
         selfie = selfie.resize((box_width, box_height))
 
         template.paste(selfie, (box_x, box_y))
