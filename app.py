@@ -11,7 +11,8 @@ def add_selfie_to_template(selfie, template_path, output_path):
 
         template.paste(selfie, (box_x, box_y))
 
-        template.save()
+        # Save the combined image
+        template.save(output_path)
         st.success(f"Image saved to {output_path}")
 
     except FileNotFoundError:
@@ -25,8 +26,8 @@ uploaded_selfie = st.file_uploader("Upload your selfie", type=["jpg", "jpeg", "p
 
 if uploaded_selfie is not None:
     selfie_image = Image.open(uploaded_selfie)
-    template_image_path = 'PnbONE_Template.jpg'  # Path to your template image
     output_image_path = 'output.jpg'  # Desired output path
 
     if st.button("Add Selfie to Template"):
-        add_selfie_to_template(selfie_image, template_image_path, output_image_path)
+        add_selfie_to_template(selfie_image, 'PnbONE_Template.jpg', output_image_path)
+        st.image(output_image_path, caption='Combined Image', use_column_width=True)
