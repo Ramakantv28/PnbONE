@@ -25,7 +25,7 @@ def correct_orientation(image):
 
 def add_selfie_to_template(selfie, template_path, output_path):
     try:
-        template = Image.open('PnbONE_Teamplate.jpg')
+        template = Image.open('PnbONE_Template.jpg')
 
         box_x, box_y = 462, 450  # Top-left corner coordinates of the white box
         box_width, box_height = 490, 500  # Dimensions of the white box
@@ -45,7 +45,7 @@ def add_selfie_to_template(selfie, template_path, output_path):
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
-st.title('Selfie to Template Adder')
+st.title('UPI Payment using PNB ONE')
 
 if 'uploaded_selfie' not in st.session_state:
     st.session_state.uploaded_selfie = None
